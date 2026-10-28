@@ -1,39 +1,29 @@
-# Spork Heroku Craft Node Buildpack
+# Heroku Craft Node Buildpack
 
-A Heroku buildpack for deploying Craft CMS applications with Node.js support.
+A Heroku buildpack for deploying Craft CMS sites that have a Node.js front-end build.
 
-## Overview
+It runs after the standard Node and PHP buildpacks and:
 
-This buildpack enables the deployment of Craft CMS projects on Heroku with integrated Node.js build tooling support.
+1. runs `npm install` in `app/src`;
+2. writes the deployed commit hash to `app/craft/config/version.php`;
+3. makes `app/craft` the root of the deployed app, dropping everything else.
 
 ## Usage
 
-Add this buildpack to your Heroku application:
+Always pin to a tag, never a branch:
 
 ```bash
-heroku buildpacks:add https://github.com/sporkdigital/spork-heroku-craft-node-buildpack
+heroku buildpacks:add https://github.com/Merchiston-and-Grant/heroku-craft-node-buildpack#0.3.0 --app <app>
 ```
 
-## Features
-
-- Craft CMS deployment support
-- Node.js build tool integration
-- Heroku-optimized configuration
-
-## Requirements
-
-- Heroku account
-- Craft CMS project
-- Node.js dependencies (if applicable)
+To move an app to a new tag, change staging first, check a build, then live.
 
 ## Version
 
-Current version: 0.2.1
+Current version: 0.3.0
 
-## License
-
-See LICENSE file for details.
+Previously `sporkdigital/spork-heroku-craft-node-buildpack`. Moved to Merchiston & Grant in October 2026.
 
 ## Maintainer
 
-Spork Digital
+Merchiston & Grant
